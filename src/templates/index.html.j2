@@ -1,7 +1,7 @@
 {% extends "base.html.j2" %}
 {% block content %}
-<section class="hero home-hero" aria-labelledby="hero-title">
-  <div class="hero-copy">
+<section class="home-cover" aria-labelledby="hero-title">
+  <div class="hero-copy glass-panel">
     <p class="kicker">{{ home.hero.kicker }}</p>
     <h1 id="hero-title">{{ home.hero.headline }}</h1>
     <p class="lead">{{ home.hero.intro }}</p>
@@ -10,20 +10,7 @@
       <a class="button secondary" href="{{ site.github }}">GitHub</a>
     </div>
   </div>
-  <div class="hero-stage" aria-hidden="true">
-    <div class="neko-panel">
-      <span class="cat-ear left"></span>
-      <span class="cat-ear right"></span>
-      <div class="screen-line wide"></div>
-      <div class="screen-line"></div>
-      <div class="screen-line short"></div>
-      <div class="orbit one"></div>
-      <div class="orbit two"></div>
-      <div class="spark s1"></div>
-      <div class="spark s2"></div>
-      <div class="spark s3"></div>
-    </div>
-  </div>
+  <a class="scroll-cue" href="#{{ home.sections[0].id }}" aria-label="向下滑动进入主页内容"></a>
 </section>
 
 {% for section in home.sections %}

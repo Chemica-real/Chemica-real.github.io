@@ -777,3 +777,290 @@ h1 {
     font-size: 0.98rem;
   }
 }
+
+/* White-green glass theme */
+:root {
+  --ink: #16251d;
+  --muted: #5c7166;
+  --paper: #f7fbf6;
+  --panel: rgba(255, 255, 255, 0.76);
+  --line: rgba(33, 91, 61, 0.16);
+  --black: #10251a;
+  --cyan: #84e9c7;
+  --cyan-deep: #277856;
+  --pink: #9fd8b6;
+  --magenta: #4ea875;
+  --yellow: #e8f4b3;
+  --mint: #c7f5dd;
+  --violet: #6aa27d;
+  --shadow: 0 24px 80px rgba(20, 73, 45, 0.18);
+}
+
+body {
+  background:
+    linear-gradient(135deg, rgba(211, 242, 224, 0.88), transparent 38%),
+    linear-gradient(225deg, rgba(246, 252, 244, 0.92), transparent 42%),
+    var(--paper);
+}
+
+body::before {
+  background-image:
+    linear-gradient(rgba(35, 103, 70, 0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35, 103, 70, 0.05) 1px, transparent 1px);
+}
+
+.home-page main {
+  padding-top: 0;
+}
+
+.site-header {
+  border: 1px solid rgba(255, 255, 255, 0.82);
+  border-bottom: 1px solid rgba(39, 120, 86, 0.28);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: 0 14px 42px rgba(31, 84, 57, 0.14);
+}
+
+.brand-mark {
+  border-color: rgba(255, 255, 255, 0.86);
+  background: rgba(255, 255, 255, 0.58);
+  box-shadow: inset 0 0 0 1px rgba(39, 120, 86, 0.18), 0 8px 22px rgba(31, 84, 57, 0.14);
+  color: var(--cyan-deep);
+}
+
+.nav a {
+  color: #315c45;
+}
+
+.nav a:hover,
+.nav a:focus-visible {
+  border-color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.54);
+  color: #174c34;
+  box-shadow: inset 0 0 0 1px rgba(39, 120, 86, 0.16);
+}
+
+.audio-toggle {
+  --progress: 0deg;
+  position: relative;
+  display: inline-grid;
+  flex: 0 0 auto;
+  width: 42px;
+  height: 42px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 50%;
+  background:
+    radial-gradient(circle, rgba(255, 255, 255, 0.8) 0 48%, transparent 49%),
+    conic-gradient(#2f9a68 var(--progress), rgba(255, 255, 255, 0.38) 0);
+  box-shadow: 0 10px 26px rgba(31, 84, 57, 0.18);
+  cursor: pointer;
+}
+
+.audio-toggle::before {
+  width: 0;
+  height: 0;
+  margin-left: 3px;
+  border-top: 7px solid transparent;
+  border-bottom: 7px solid transparent;
+  border-left: 11px solid #277856;
+  content: "";
+}
+
+.audio-toggle.is-playing::before,
+.audio-toggle.is-playing::after {
+  width: 4px;
+  height: 14px;
+  border: 0;
+  border-radius: 3px;
+  background: #277856;
+  content: "";
+}
+
+.audio-toggle.is-playing::before {
+  margin-left: 0;
+  transform: translateX(-3px);
+}
+
+.audio-toggle.is-playing::after {
+  position: absolute;
+  transform: translateX(4px);
+}
+
+.audio-toggle.needs-gesture {
+  box-shadow: 0 0 0 3px rgba(232, 244, 179, 0.86), 0 10px 26px rgba(31, 84, 57, 0.18);
+}
+
+.home-cover {
+  position: relative;
+  display: grid;
+  min-height: 100svh;
+  padding: 92px clamp(18px, 5vw, 72px) clamp(86px, 10vh, 128px);
+  place-items: end center;
+  overflow: hidden;
+  background:
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.08), rgba(247, 251, 246, 0.18) 58%, rgba(247, 251, 246, 0.72)),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.24), transparent 46%, rgba(14, 42, 28, 0.1)),
+    url("media/images/kaltsit-ishengtuo.jpg");
+  background-position: center center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+.home-cover::after {
+  position: absolute;
+  inset: auto 0 0;
+  height: 30vh;
+  pointer-events: none;
+  background: linear-gradient(to bottom, transparent, var(--paper));
+  content: "";
+}
+
+.glass-panel {
+  position: relative;
+  z-index: 1;
+  width: min(100%, 760px);
+  padding: clamp(20px, 3.2vw, 34px);
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.42);
+  box-shadow: 0 24px 80px rgba(17, 52, 34, 0.22);
+  backdrop-filter: blur(22px) saturate(1.2);
+}
+
+.home-cover .kicker {
+  border-color: rgba(255, 255, 255, 0.7);
+  background: rgba(255, 255, 255, 0.42);
+  color: #1e6949;
+}
+
+.home-cover h1 {
+  margin-bottom: 14px;
+  color: #10251a;
+  font-size: clamp(2.8rem, 6.2vw, 5.8rem);
+  text-shadow: 0 2px 22px rgba(255, 255, 255, 0.92);
+  white-space: nowrap;
+}
+
+.home-cover .lead {
+  color: #314b3c;
+  text-shadow: 0 1px 16px rgba(255, 255, 255, 0.72);
+}
+
+.button {
+  border-color: rgba(255, 255, 255, 0.82);
+  box-shadow: 0 12px 28px rgba(31, 84, 57, 0.16);
+}
+
+.button.primary {
+  background: linear-gradient(135deg, #2e9d69, #95dfb3);
+  color: #fff;
+}
+
+.button.secondary {
+  background: rgba(255, 255, 255, 0.48);
+  color: #174c34;
+}
+
+.scroll-cue {
+  position: absolute;
+  bottom: 24px;
+  left: 50%;
+  z-index: 2;
+  display: grid;
+  width: 48px;
+  height: 48px;
+  place-items: center;
+  border: 1px solid rgba(255, 255, 255, 0.74);
+  border-radius: 50%;
+  background: rgba(255, 255, 255, 0.34);
+  box-shadow: 0 18px 44px rgba(17, 52, 34, 0.2);
+  backdrop-filter: blur(18px);
+  transform: translateX(-50%);
+}
+
+.scroll-cue::before {
+  width: 15px;
+  height: 15px;
+  border-right: 3px solid #236746;
+  border-bottom: 3px solid #236746;
+  content: "";
+  transform: translateY(-3px) rotate(45deg);
+}
+
+.content-section {
+  background: rgba(247, 251, 246, 0.92);
+  border-top-color: rgba(39, 120, 86, 0.12);
+}
+
+.section-title span {
+  border-color: rgba(255, 255, 255, 0.82);
+  background: #e8f4b3;
+  color: #236746;
+  box-shadow: 5px 5px 0 rgba(149, 223, 179, 0.7);
+}
+
+.text-panel,
+.link-card,
+.markdown-body {
+  border-color: rgba(255, 255, 255, 0.82);
+  background: rgba(255, 255, 255, 0.74);
+  box-shadow: 0 18px 48px rgba(31, 84, 57, 0.12);
+  backdrop-filter: blur(16px);
+}
+
+.link-card:hover {
+  box-shadow: 0 18px 48px rgba(31, 84, 57, 0.18);
+}
+
+.page-hero {
+  background:
+    linear-gradient(90deg, rgba(255, 255, 255, 0.84), rgba(255, 255, 255, 0.46)),
+    linear-gradient(135deg, rgba(205, 239, 219, 0.86), rgba(247, 251, 246, 0.88));
+}
+
+.page-hero h1,
+.section-title h2 {
+  text-shadow: none;
+}
+
+.site-footer {
+  background: #123522;
+}
+
+.footer-label {
+  color: #d8efc2;
+}
+
+@media (max-width: 860px) {
+  .home-page main {
+    padding-top: 0;
+  }
+
+  .home-cover {
+    padding-top: 96px;
+    background-position: 64% center;
+  }
+
+  .glass-panel {
+    width: min(100%, 620px);
+  }
+}
+
+@media (max-width: 640px) {
+  .home-cover {
+    min-height: 100svh;
+    padding-right: 16px;
+    padding-left: 16px;
+    background-position: 64% 45%;
+  }
+
+  .home-cover h1 {
+    font-size: clamp(2rem, 8.4vw, 2.7rem);
+  }
+
+  .audio-toggle {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+  }
+}

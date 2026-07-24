@@ -18,6 +18,16 @@ SRC = ROOT / "src"
 ASSETS = ROOT / "assets"
 
 
+def copy_static_assets() -> None:
+    ASSETS.mkdir(exist_ok=True)
+    for source in (SRC / "static").rglob("*"):
+        if not source.is_file():
+            continue
+        target = ASSETS / source.relative_to(SRC / "static")
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
+
+
 def render_markdown(source: Path) -> str:
     md = Markdown(
         extensions=[
@@ -47,12 +57,10 @@ def render_site() -> None:
         lstrip_blocks=True,
     )
 
-    ASSETS.mkdir(exist_ok=True)
-    shutil.copy2(SRC / "static" / "styles.css", ASSETS / "styles.css")
-    shutil.copy2(SRC / "static" / "nav.js", ASSETS / "nav.js")
+    copy_static_assets()
 
     template = env.get_template("index.html.j2")
-    html = template.render(**data, subtitle=data["home"]["subtitle"], math=False)
+    html = template.render(**data, subtitle=data["home"]["subtitle"], math=False, body_class="home-page")
     (ROOT / "index.html").write_text(html + "\n", encoding="utf-8", newline="\n")
 
     page_template = env.get_template("page.html.j2")
@@ -63,6 +71,7 @@ def render_site() -> None:
             page=page,
             subtitle=page["subtitle"],
             math=page.get("math", False),
+            body_class="inner-page",
             content=content,
         )
         (ROOT / f"{page['slug']}.html").write_text(html + "\n", encoding="utf-8", newline="\n")

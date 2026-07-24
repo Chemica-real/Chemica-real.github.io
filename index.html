@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="assets/styles.css">
     <script defer src="assets/nav.js"></script>
   </head>
-  <body>
+  <body class="home-page">
     <div class="nav-hover-zone" aria-hidden="true"></div>
     <header class="site-header" data-auto-hide aria-label="主导航">
       <a class="brand" href="index.html" aria-label="回到首页">
@@ -24,11 +24,15 @@
         <a href="thoughts.html">想法和喵叫</a>
         <a href="gallery.html">美图</a>
       </nav>
+      <button class="audio-toggle" type="button" data-audio-toggle aria-label="播放或暂停背景音乐" title="播放或暂停背景音乐">
+        <span class="audio-ring" aria-hidden="true"></span>
+      </button>
     </header>
+    <audio id="site-audio" src="assets/media/audio/walk-through-time.wav" preload="auto" autoplay loop></audio>
 
     <main id="top">
-<section class="hero home-hero" aria-labelledby="hero-title">
-  <div class="hero-copy">
+<section class="home-cover" aria-labelledby="hero-title">
+  <div class="hero-copy glass-panel">
     <p class="kicker">Local Static Neko Base</p>
     <h1 id="hero-title">Chemica_的喵窝</h1>
     <p class="lead">欢迎来到我的小小据点。这里会慢慢放上笔记、文学、想法、美图，还有一些暂时还没想好但想留下来的东西。</p>
@@ -37,20 +41,7 @@
       <a class="button secondary" href="https://github.com/Chemica-real">GitHub</a>
     </div>
   </div>
-  <div class="hero-stage" aria-hidden="true">
-    <div class="neko-panel">
-      <span class="cat-ear left"></span>
-      <span class="cat-ear right"></span>
-      <div class="screen-line wide"></div>
-      <div class="screen-line"></div>
-      <div class="screen-line short"></div>
-      <div class="orbit one"></div>
-      <div class="orbit two"></div>
-      <div class="spark s1"></div>
-      <div class="spark s2"></div>
-      <div class="spark s3"></div>
-    </div>
-  </div>
+  <a class="scroll-cue" href="#who" aria-label="向下滑动进入主页内容"></a>
 </section>
 
 <section class="content-section" id="who" aria-labelledby="who-title">
