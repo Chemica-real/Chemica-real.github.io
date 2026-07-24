@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="{{ site.description }}">
+    <title>{{ site.base_title }} | {{ subtitle }}</title>
+    <link rel="stylesheet" href="assets/styles.css">
+    {% if math %}
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]] },
+        svg: { fontCache: "global" }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    {% endif %}
+    <script defer src="assets/nav.js"></script>
+  </head>
+  <body>
+    <div class="nav-hover-zone" aria-hidden="true"></div>
+    <header class="site-header" data-auto-hide aria-label="主导航">
+      <a class="brand" href="index.html" aria-label="回到首页">
+        <span class="brand-mark">C_</span>
+        <span>{{ site.name }}</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        {% for item in nav %}
+        <a href="{{ item.url }}">{{ item.label }}</a>
+        {% endfor %}
+      </nav>
+    </header>
+
+    <main id="top">
+      {% block content %}{% endblock %}
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-panel">
+        <div>
+          <p class="footer-label">最近更新</p>
+          <ul class="footer-list">
+            {% for update in footer.recent_updates %}
+            <li>{{ update }}</li>
+            {% endfor %}
+          </ul>
+        </div>
+        <div>
+          <p class="footer-label">其他页面</p>
+          <div class="footer-links">
+            {% for link in footer.other_pages %}
+            <a href="{{ link.url }}">{{ link.label }}</a>
+            {% endfor %}
+          </div>
+        </div>
+        <div>
+          <p class="footer-label">喵窝状态</p>
+          <p class="footer-note">© {{ site.year }} {{ site.name }}<br>Built locally with Python + Jinja2.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

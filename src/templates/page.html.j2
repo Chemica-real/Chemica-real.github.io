@@ -1,0 +1,14 @@
+{% extends "base.html.j2" %}
+{% block content %}
+<section class="page-hero" aria-labelledby="page-title">
+  <p class="kicker">{{ page.kicker }}</p>
+  <h1 id="page-title">{{ page.title }}</h1>
+  <p class="lead">{{ page.summary }}</p>
+</section>
+
+<section class="article-shell">
+  <article class="markdown-body">
+    {{ content | safe }}
+  </article>
+</section>
+{% endblock %}

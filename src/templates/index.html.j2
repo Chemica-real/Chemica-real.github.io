@@ -1,0 +1,51 @@
+{% extends "base.html.j2" %}
+{% block content %}
+<section class="hero home-hero" aria-labelledby="hero-title">
+  <div class="hero-copy">
+    <p class="kicker">{{ home.hero.kicker }}</p>
+    <h1 id="hero-title">{{ home.hero.headline }}</h1>
+    <p class="lead">{{ home.hero.intro }}</p>
+    <div class="actions" aria-label="主要链接">
+      <a class="button primary" href="notes.html">进入笔记</a>
+      <a class="button secondary" href="{{ site.github }}">GitHub</a>
+    </div>
+  </div>
+  <div class="hero-stage" aria-hidden="true">
+    <div class="neko-panel">
+      <span class="cat-ear left"></span>
+      <span class="cat-ear right"></span>
+      <div class="screen-line wide"></div>
+      <div class="screen-line"></div>
+      <div class="screen-line short"></div>
+      <div class="orbit one"></div>
+      <div class="orbit two"></div>
+      <div class="spark s1"></div>
+      <div class="spark s2"></div>
+      <div class="spark s3"></div>
+    </div>
+  </div>
+</section>
+
+{% for section in home.sections %}
+<section class="content-section" id="{{ section.id }}" aria-labelledby="{{ section.id }}-title">
+  <div class="section-title">
+    <span>{{ section.marker }}</span>
+    <h2 id="{{ section.id }}-title">{{ section.title }}</h2>
+  </div>
+  {% if "items" in section %}
+  <div class="link-grid">
+    {% for item in section["items"] %}
+    <a class="link-card" href="{{ item.url }}">
+      <strong>{{ item.label }}</strong>
+      <span>{{ item.text }}</span>
+    </a>
+    {% endfor %}
+  </div>
+  {% else %}
+  <div class="text-panel">
+    <p>{{ section.body }}</p>
+  </div>
+  {% endif %}
+</section>
+{% endfor %}
+{% endblock %}
