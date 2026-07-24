@@ -166,7 +166,7 @@ main {
 
 .home-hero {
   display: grid;
-  grid-template-columns: minmax(0, 0.92fr) minmax(320px, 0.9fr);
+  grid-template-columns: minmax(520px, 1.08fr) minmax(280px, 0.82fr);
   align-items: center;
   gap: clamp(28px, 5vw, 72px);
   min-height: calc(100vh - 70px);
@@ -207,11 +207,17 @@ h1 {
   max-width: 760px;
   margin-bottom: 20px;
   color: var(--black);
-  font-size: clamp(2.7rem, 7vw, 6.9rem);
+  font-size: clamp(2.5rem, 5.6vw, 5.6rem);
   font-weight: 950;
   line-height: 0.98;
   letter-spacing: 0;
   text-shadow: 4px 4px 0 rgba(41, 215, 255, 0.55), 8px 8px 0 rgba(255, 112, 184, 0.34);
+}
+
+.home-hero h1 {
+  max-width: none;
+  font-size: clamp(3.2rem, 6.1vw, 6.2rem);
+  white-space: nowrap;
 }
 
 .lead {
@@ -259,7 +265,7 @@ h1 {
 
 .hero-stage {
   display: grid;
-  min-height: 470px;
+  min-height: 430px;
   place-items: center;
 }
 
@@ -668,6 +674,18 @@ h1 {
 }
 
 @media (max-width: 1100px) {
+  .home-hero {
+    grid-template-columns: minmax(0, 1fr) minmax(260px, 0.72fr);
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2.8rem, 5.4vw, 4.7rem);
+  }
+
+  .neko-panel {
+    width: min(100%, 460px);
+  }
+
   .link-grid {
     grid-template-columns: repeat(3, minmax(0, 1fr));
   }
@@ -688,9 +706,18 @@ h1 {
     grid-template-columns: 1fr;
   }
 
+  .home-hero {
+    gap: 22px;
+    min-height: auto;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2.45rem, 8.4vw, 4rem);
+  }
+
   .hero-stage {
     order: -1;
-    min-height: 360px;
+    min-height: 300px;
   }
 }
 
@@ -710,7 +737,14 @@ h1 {
   }
 
   h1 {
-    font-size: 3rem;
+    font-size: clamp(2.05rem, 9vw, 2.8rem);
+    text-shadow: 2px 2px 0 rgba(41, 215, 255, 0.55), 4px 4px 0 rgba(255, 112, 184, 0.34);
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2rem, 8.6vw, 2.85rem);
+    line-height: 1.04;
+    white-space: nowrap;
   }
 
   .link-grid {
@@ -722,6 +756,24 @@ h1 {
   }
 
   .neko-panel {
-    width: min(100%, 380px);
+    width: min(100%, 340px);
+  }
+}
+
+@media (max-width: 380px) {
+  .hero,
+  .page-hero,
+  .content-section,
+  .article-shell {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(1.82rem, 8.8vw, 2.1rem);
+  }
+
+  .lead {
+    font-size: 0.98rem;
   }
 }
