@@ -21,7 +21,7 @@
 - 美图页面正文：`src/content/pages/gallery.md`
 - HTML 模板：`src/templates/`
 - 样式：`src/static/styles.css`
-- 导航和音乐控件：`src/static/nav.js`
+- 导航和文章底部翻页交互：`src/static/nav.js`
 
 ## 栏目规则
 

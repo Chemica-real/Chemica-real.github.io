@@ -29,11 +29,7 @@
         <a href="{{ asset_prefix | default('') }}{{ item.url }}">{{ item.label }}</a>
         {% endfor %}
       </nav>
-      <button class="audio-toggle" type="button" data-audio-toggle aria-label="播放或暂停背景音乐" title="播放或暂停背景音乐">
-        <span class="audio-ring" aria-hidden="true"></span>
-      </button>
     </header>
-    <audio id="site-audio" src="{{ asset_prefix | default('') }}assets/media/audio/walk-through-time.wav" preload="auto" loop></audio>
 
     <main id="top">
       {% block content %}{% endblock %}

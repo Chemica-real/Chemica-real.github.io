@@ -839,57 +839,6 @@ body::before {
   box-shadow: inset 0 0 0 1px rgba(39, 120, 86, 0.16);
 }
 
-.audio-toggle {
-  --progress: 0deg;
-  position: relative;
-  display: inline-grid;
-  flex: 0 0 auto;
-  width: 42px;
-  height: 42px;
-  place-items: center;
-  border: 1px solid rgba(255, 255, 255, 0.78);
-  border-radius: 50%;
-  background:
-    radial-gradient(circle, rgba(255, 255, 255, 0.8) 0 48%, transparent 49%),
-    conic-gradient(#2f9a68 var(--progress), rgba(255, 255, 255, 0.38) 0);
-  box-shadow: 0 10px 26px rgba(31, 84, 57, 0.18);
-  cursor: pointer;
-}
-
-.audio-toggle::before {
-  width: 0;
-  height: 0;
-  margin-left: 3px;
-  border-top: 7px solid transparent;
-  border-bottom: 7px solid transparent;
-  border-left: 11px solid #277856;
-  content: "";
-}
-
-.audio-toggle.is-playing::before,
-.audio-toggle.is-playing::after {
-  width: 4px;
-  height: 14px;
-  border: 0;
-  border-radius: 3px;
-  background: #277856;
-  content: "";
-}
-
-.audio-toggle.is-playing::before {
-  margin-left: 0;
-  transform: translateX(-3px);
-}
-
-.audio-toggle.is-playing::after {
-  position: absolute;
-  transform: translateX(4px);
-}
-
-.audio-toggle.needs-gesture {
-  box-shadow: 0 0 0 3px rgba(232, 244, 179, 0.86), 0 10px 26px rgba(31, 84, 57, 0.18);
-}
-
 .home-cover {
   position: relative;
   display: grid;
@@ -1240,12 +1189,6 @@ body::before {
 
   .home-cover h1 {
     font-size: clamp(2rem, 8.4vw, 2.7rem);
-  }
-
-  .audio-toggle {
-    position: absolute;
-    top: 12px;
-    right: 12px;
   }
 
   .article-pager {

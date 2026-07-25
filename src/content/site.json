@@ -9,23 +9,50 @@
     "year": 2026
   },
   "nav": [
-    { "label": "我是谁", "url": "index.html#who" },
-    { "label": "这里有什么", "url": "index.html#contents" },
-    { "label": "其他", "url": "index.html#other" },
-    { "label": "笔记", "url": "notes.html" },
-    { "label": "文学类", "url": "literature.html" },
-    { "label": "想法和喵叫", "url": "thoughts.html" },
-    { "label": "美图", "url": "gallery.html" }
+    {
+      "label": "我是谁",
+      "url": "index.html#who"
+    },
+    {
+      "label": "笔记",
+      "url": "notes.html"
+    },
+    {
+      "label": "文学",
+      "url": "literature.html"
+    },
+    {
+      "label": "想法",
+      "url": "thoughts.html"
+    },
+    {
+      "label": "美图",
+      "url": "gallery.html"
+    },
+    {
+      "label": "其他",
+      "url": "index.html#contents-other"
+    }
   ],
   "footer": {
     "recent_updates": [
+      "2026-07-25：上传了小说，并整理文学类栏目。",
       "2026-07-24：搭建喵窝主页、多页面模板、Markdown 与 LaTeX 样式。",
       "之后可以把这里改成文章更新、项目更新或学习记录。"
     ],
     "other_pages": [
-      { "label": "GitHub", "url": "https://github.com/Chemica-real" },
-      { "label": "Bilibili", "url": "https://space.bilibili.com/699100129?spm_id_from=333.1007.0.0" },
-      { "label": "Gitee", "url": "https://gitee.com/the-person-on-the-tree" }
+      {
+        "label": "GitHub",
+        "url": "https://github.com/Chemica-real"
+      },
+      {
+        "label": "Bilibili",
+        "url": "https://space.bilibili.com/699100129?spm_id_from=333.1007.0.0"
+      },
+      {
+        "label": "Gitee",
+        "url": "https://gitee.com/the-person-on-the-tree"
+      }
     ]
   },
   "home": {
@@ -47,18 +74,33 @@
         "marker": "02",
         "title": "这里有什么",
         "items": [
-          { "label": "学科笔记", "text": "本喵很认真的！！！", "url": "notes.html" },
-          { "label": "文学类", "text": "短篇小说、随笔，米迦与树上人的文字会慢慢发光。", "url": "literature.html" },
-          { "label": "想法和喵叫", "text": "灵感、碎碎念、阶段性复盘，以及一些很轻的喵喵叫~。", "url": "thoughts.html" },
-          { "label": "一些美图", "text": "好看喵。", "url": "gallery.html" },
-          { "label": "其他", "text": "尚未分类的小页面和链接，会随着喵窝一起长大。", "url": "others.html" }
+          {
+            "label": "学科笔记",
+            "text": "本喵很认真的！！！",
+            "url": "notes.html"
+          },
+          {
+            "label": "文学类",
+            "text": "短篇小说、随笔，米迦与树上人的文字会慢慢发光。",
+            "url": "literature.html"
+          },
+          {
+            "label": "想法和喵叫",
+            "text": "灵感、碎碎念、阶段性复盘，以及一些很轻的喵喵叫~。",
+            "url": "thoughts.html"
+          },
+          {
+            "label": "一些美图",
+            "text": "好看喵。",
+            "url": "gallery.html"
+          },
+          {
+            "label": "其他",
+            "text": "尚未分类的小页面和链接，会随着喵窝一起长大。",
+            "url": "others.html",
+            "id": "contents-other"
+          }
         ]
-      },
-      {
-        "id": "other",
-        "marker": "03",
-        "title": "其他",
-        "body": "这里暂时还空着。可以以后放站点说明、友链、正在玩的东西、收藏清单，或者一个只属于喵窝的秘密角落（哼哼~ A secret is a secret）"
       }
     ]
   },

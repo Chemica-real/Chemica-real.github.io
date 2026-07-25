@@ -22,7 +22,7 @@
   {% if "items" in section %}
   <div class="link-grid">
     {% for item in section["items"] %}
-    <a class="link-card" href="{{ item.url }}">
+    <a class="link-card" href="{{ item.url }}"{% if item.id %} id="{{ item.id }}"{% endif %}>
       <strong>{{ item.label }}</strong>
       <span>{{ item.text }}</span>
     </a>

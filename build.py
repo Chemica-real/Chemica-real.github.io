@@ -31,6 +31,14 @@ def copy_static_assets() -> None:
         shutil.copy2(source, target)
 
 
+def remove_managed_outputs() -> None:
+    for slug in MANAGED_SECTIONS:
+        output_dir = (ROOT / slug).resolve()
+        if output_dir.exists():
+            output_dir.relative_to(ROOT.resolve())
+            shutil.rmtree(output_dir)
+
+
 def render_markdown(source: Path) -> str:
     md = Markdown(
         extensions=[
@@ -212,6 +220,7 @@ def render_site() -> None:
     )
 
     copy_static_assets()
+    remove_managed_outputs()
 
     template = env.get_template("index.html.j2")
     html = template.render(
