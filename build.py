@@ -3,6 +3,7 @@ from __future__ import annotations
 import json
 import os
 import shutil
+import hashlib
 from pathlib import Path
 from urllib.parse import quote
 
@@ -29,6 +30,15 @@ def copy_static_assets() -> None:
         target = ASSETS / source.relative_to(SRC / "static")
         target.parent.mkdir(parents=True, exist_ok=True)
         shutil.copy2(source, target)
+
+
+def static_asset_version() -> str:
+    digest = hashlib.sha1()
+    for relative in (Path("styles.css"), Path("nav.js")):
+        path = SRC / "static" / relative
+        if path.exists():
+            digest.update(path.read_bytes())
+    return digest.hexdigest()[:10]
 
 
 def remove_managed_outputs() -> None:
@@ -89,8 +99,8 @@ def output_for_folder(section_slug: str, section_root: Path, folder: Path) -> Pa
 
 def sorted_children(folder: Path) -> tuple[list[Path], list[Path]]:
     children = [child for child in folder.iterdir() if not child.name.startswith(".")]
-    folders = sorted((child for child in children if child.is_dir()), key=lambda p: p.name.lower(), reverse=True)
-    markdown_files = sorted((child for child in children if child.suffix.lower() == ".md"), key=lambda p: p.name.lower(), reverse=True)
+    folders = sorted((child for child in children if child.is_dir()), key=lambda p: p.name.lower())
+    markdown_files = sorted((child for child in children if child.suffix.lower() == ".md"), key=lambda p: p.name.lower())
     return folders, markdown_files
 
 
@@ -221,6 +231,7 @@ def render_site() -> None:
 
     copy_static_assets()
     remove_managed_outputs()
+    data["asset_version"] = static_asset_version()
 
     template = env.get_template("index.html.j2")
     html = template.render(

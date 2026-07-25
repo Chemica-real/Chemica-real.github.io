@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.description }}">
     <title>{{ site.base_title }} | {{ subtitle }}</title>
-    <link rel="stylesheet" href="{{ asset_prefix | default('') }}assets/styles.css">
+    <link rel="stylesheet" href="{{ asset_prefix | default('') }}assets/styles.css?v={{ asset_version }}">
     {% if math %}
     <script>
       window.MathJax = {
@@ -15,7 +15,7 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     {% endif %}
-    <script defer src="{{ asset_prefix | default('') }}assets/nav.js"></script>
+    <script defer src="{{ asset_prefix | default('') }}assets/nav.js?v={{ asset_version }}"></script>
   </head>
   <body class="{{ body_class | default('') }}">
     <div class="nav-hover-zone" aria-hidden="true"></div>

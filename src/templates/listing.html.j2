@@ -4,9 +4,10 @@
   <p class="kicker">{{ page.kicker }}</p>
   <h1 id="page-title">{{ listing_title }}</h1>
   <p class="lead">{{ page.summary }}</p>
-  <nav class="breadcrumb" aria-label="当前位置">
+  <nav class="breadcrumb path-trail" aria-label="当前位置">
     {% for crumb in breadcrumb %}
     <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+    {% if not loop.last %}<span aria-hidden="true">/</span>{% endif %}
     {% endfor %}
   </nav>
 </section>

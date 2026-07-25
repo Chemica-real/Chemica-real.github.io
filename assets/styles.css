@@ -205,7 +205,7 @@ p {
 
 h1 {
   max-width: 760px;
-  margin-bottom: 20px;
+  margin-bottom: 5%;
   color: var(--black);
   font-size: clamp(2.5rem, 5.6vw, 5.6rem);
   font-weight: 950;
@@ -983,29 +983,39 @@ body::before {
 .breadcrumb {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  align-items: center;
+  gap: 9px;
+  width: fit-content;
+  max-width: 100%;
   margin-top: 18px;
+  padding: 8px 10px;
+  border: 1px solid rgba(255, 255, 255, 0.78);
+  border-radius: 8px;
+  background: rgba(255, 255, 255, 0.46);
+  box-shadow: 0 14px 34px rgba(31, 84, 57, 0.12);
+  backdrop-filter: blur(16px);
 }
 
 .breadcrumb a {
   display: inline-flex;
   align-items: center;
-  min-height: 34px;
-  padding: 5px 11px;
-  border: 1px solid rgba(255, 255, 255, 0.76);
-  border-radius: 8px;
-  background: rgba(255, 255, 255, 0.42);
+  min-height: 28px;
+  padding: 3px 5px;
   color: #1d6747;
   font-size: 0.9rem;
   font-weight: 800;
   text-decoration: none;
-  backdrop-filter: blur(12px);
 }
 
-.breadcrumb a:not(:last-child)::after {
-  margin-left: 8px;
+.breadcrumb > span {
   color: rgba(29, 103, 71, 0.52);
-  content: "/";
+  font-weight: 900;
+}
+
+.breadcrumb a:hover {
+  color: #0f442e;
+  text-decoration: underline;
+  text-underline-offset: 4px;
 }
 
 .file-list-panel {
@@ -1116,8 +1126,20 @@ body::before {
   background: rgba(255, 255, 255, 0.38);
   box-shadow: 0 -16px 44px rgba(31, 84, 57, 0.14);
   backdrop-filter: blur(18px) saturate(1.15);
-  transform: translateY(calc(100% - 10px));
+  transform: translateY(calc(100% - 24px));
   transition: transform 220ms ease;
+}
+
+.article-pager::before {
+  position: absolute;
+  top: 7px;
+  left: 50%;
+  width: 54px;
+  height: 4px;
+  border-radius: 99px;
+  background: rgba(47, 141, 97, 0.46);
+  content: "";
+  transform: translateX(-50%);
 }
 
 .article-pager:hover,
@@ -1129,8 +1151,8 @@ body::before {
 .pager-button {
   display: grid;
   gap: 2px;
-  min-height: 62px;
-  padding: 11px 14px;
+  min-height: 66px;
+  padding: 15px 14px 11px;
   border: 1px solid rgba(255, 255, 255, 0.84);
   border-radius: 8px;
   background: rgba(255, 255, 255, 0.58);
