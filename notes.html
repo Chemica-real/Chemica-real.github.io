@@ -6,16 +6,9 @@
     <meta name="description" content="Chemica_的个人 GitHub 主页，一个用 Python 和 Jinja2 本地生成的可爱静态喵窝。">
     <title>Chemica_的喵窝 | 笔记</title>
     <link rel="stylesheet" href="assets/styles.css">
-    <script>
-      window.MathJax = {
-        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]] },
-        svg: { fontCache: "global" }
-      };
-    </script>
-    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     <script defer src="assets/nav.js"></script>
   </head>
-  <body class="inner-page">
+  <body class="inner-page listing-page">
     <div class="nav-hover-zone" aria-hidden="true"></div>
     <header class="site-header" data-auto-hide aria-label="主导航">
       <a class="brand" href="index.html" aria-label="回到首页">
@@ -35,78 +28,31 @@
         <span class="audio-ring" aria-hidden="true"></span>
       </button>
     </header>
-    <audio id="site-audio" src="assets/media/audio/walk-through-time.wav" preload="auto" autoplay loop></audio>
+    <audio id="site-audio" src="assets/media/audio/walk-through-time.wav" preload="auto" loop></audio>
 
     <main id="top">
 <section class="page-hero" aria-labelledby="page-title">
   <p class="kicker">Notes / Markdown / LaTeX</p>
   <h1 id="page-title">笔记</h1>
   <p class="lead">这里用于放学科笔记。模板已经准备好 Markdown、LaTeX、Python/C++ 代码块和表格样式。</p>
+  <nav class="breadcrumb" aria-label="当前位置">
+    <a href="notes.html">笔记</a>
+  </nav>
 </section>
 
 <section class="article-shell">
-  <article class="markdown-body">
-    <h1 id="_1">学科笔记</h1>
-<p>这里是学科笔记的入口。你可以直接写 Markdown，也可以把不同学科拆成更多页面。</p>
-<h2 id="latex">LaTeX 公式示例</h2>
-<p>行内公式示例：$E = mc^2$，以及 $\nabla \cdot \mathbf{E} = \rho / \varepsilon_0$。</p>
-<p>块级公式示例：</p>
-<p>$$
-\int_{-\infty}^{+\infty} e^{-x^2}\,dx = \sqrt{\pi}
-$$</p>
-<h2 id="python">Python 代码块</h2>
-<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">pathlib</span><span class="w"> </span><span class="kn">import</span> <span class="n">Path</span>
-
-<span class="k">def</span><span class="w"> </span><span class="nf">read_notes</span><span class="p">(</span><span class="n">root</span><span class="p">:</span> <span class="n">Path</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">list</span><span class="p">[</span><span class="nb">str</span><span class="p">]:</span>
-    <span class="k">return</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">path</span><span class="o">.</span><span class="n">stem</span> <span class="k">for</span> <span class="n">path</span> <span class="ow">in</span> <span class="n">root</span><span class="o">.</span><span class="n">glob</span><span class="p">(</span><span class="s2">&quot;*.md&quot;</span><span class="p">))</span>
-
-<span class="nb">print</span><span class="p">(</span><span class="n">read_notes</span><span class="p">(</span><span class="n">Path</span><span class="p">(</span><span class="s2">&quot;src/content/pages&quot;</span><span class="p">)))</span>
-</code></pre></div>
-
-<h2 id="c">C++ 代码块</h2>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;iostream&gt;</span>
-<span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;vector&gt;</span>
-
-<span class="kt">int</span><span class="w"> </span><span class="nf">main</span><span class="p">()</span><span class="w"> </span><span class="p">{</span>
-<span class="w">    </span><span class="n">std</span><span class="o">::</span><span class="n">vector</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">{</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">};</span>
-<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">data</span><span class="p">)</span><span class="w"> </span><span class="p">{</span>
-<span class="w">        </span><span class="n">std</span><span class="o">::</span><span class="n">cout</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="sc">&#39;\n&#39;</span><span class="p">;</span>
-<span class="w">    </span><span class="p">}</span>
-<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span>
-<span class="p">}</span>
-</code></pre></div>
-
-<h2 id="_2">表格示例</h2>
-<table>
-<thead>
-<tr>
-<th>分类</th>
-<th>内容</th>
-<th>状态</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>数学</td>
-<td>公式、题解、推导</td>
-<td>待补充</td>
-</tr>
-<tr>
-<td>编程</td>
-<td>Python、C++、算法</td>
-<td>待补充</td>
-</tr>
-<tr>
-<td>化学</td>
-<td>实验、概念、笔记</td>
-<td>待补充</td>
-</tr>
-</tbody>
-</table>
-<blockquote>
-<p>之后你可以把这一页拆成课程索引，再从这里链接到更细的章节。</p>
-</blockquote>
-  </article>
+  <div class="file-list-panel">
+    <div class="file-list">
+      <a class="file-list-item" href="notes/01%20Introduction/index.html">
+        <span class="file-icon folder" aria-hidden="true"></span>
+        <span>01 Introduction</span>
+      </a>
+      <a class="file-list-item" href="notes/01%20Trial.html">
+        <span class="file-icon markdown" aria-hidden="true"></span>
+        <span>01 Trial</span>
+      </a>
+    </div>
+  </div>
 </section>
     </main>
 

@@ -1,6 +1,6 @@
 # Chemica-real.github.io
 
-这是 Chemica_的 GitHub Pages 喵窝主页。站点使用 Python + Jinja2 在本地生成静态 HTML，没有在线后端。
+这是 Chemica_ 的 GitHub Pages 喵窝主页。站点使用 Python + Jinja2 在本地生成静态 HTML，没有在线后端。
 
 ## 本地生成
 
@@ -9,15 +9,30 @@
 .venv\Scripts\python.exe build.py
 ```
 
-生成结果会写入仓库根目录的 `index.html` 和 `assets/`，可以直接由 GitHub Pages 从分支根目录发布。
+生成结果会写入仓库根目录的 `index.html`、各栏目页面和 `assets/`，可以直接由 GitHub Pages 从分支根目录发布。
 
 ## 修改内容
 
 - 全站导航、底部、主页内容、页面列表：`src/content/site.json`
-- 笔记、文学、想法、美图、其他页面正文：`src/content/pages/`
+- 笔记：`src/content/notes/`
+- 文学类：`src/content/literature/`
+- 想法和喵叫：`src/content/thoughts/`
+- 其他：`src/content/others/`
+- 美图页面正文：`src/content/pages/gallery.md`
 - HTML 模板：`src/templates/`
 - 样式：`src/static/styles.css`
-- 自动隐藏导航：`src/static/nav.js`
+- 导航和音乐控件：`src/static/nav.js`
+
+## 栏目规则
+
+在 `notes`、`literature`、`thoughts`、`others` 四个文件夹里可以直接放 `.md` 文件，也可以继续创建嵌套文件夹。
+
+构建时会自动生成：
+
+- 栏目列表页：先显示文件夹，再显示 Markdown 文件
+- 排序规则：文件夹按名称降序，Markdown 文件也按名称降序
+- 文章详情页：每个 Markdown 文件生成一个独立页面
+- 详情页底部：上一篇/下一篇玻璃态按钮，首尾不存在时显示灰色不可点状态
 
 ## 内容能力
 

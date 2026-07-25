@@ -1,9 +1,10 @@
 const header = document.querySelector("[data-auto-hide]");
 const audio = document.querySelector("#site-audio");
 const audioToggle = document.querySelector("[data-audio-toggle]");
+const articlePager = document.querySelector("[data-article-pager]");
 let lastScrollY = window.scrollY;
-let userPausedAudio = false;
 const AUDIO_KEY = "chemica-audio-state";
+let pagerTimer = 0;
 
 function updateHeader() {
   if (!header) return;
@@ -47,7 +48,6 @@ function setProgress() {
 
 async function playAudio() {
   if (!audio) return;
-  userPausedAudio = false;
   try {
     await audio.play();
     audioToggle?.classList.add("is-playing");
@@ -56,13 +56,12 @@ async function playAudio() {
   } catch {
     audioToggle?.classList.remove("is-playing");
     audioToggle?.classList.add("needs-gesture");
-    writeAudioState({ playing: true, userPaused: false });
+    writeAudioState({ playing: false, userPaused: false });
   }
 }
 
 function pauseAudio() {
   if (!audio) return;
-  userPausedAudio = true;
   audio.pause();
   audioToggle?.classList.remove("is-playing");
   audioToggle?.classList.remove("needs-gesture");
@@ -72,9 +71,7 @@ function pauseAudio() {
 function initAudio() {
   if (!audio || !audioToggle) return;
   audio.volume = 0.42;
-  audio.autoplay = true;
   const state = readAudioState();
-  userPausedAudio = state.userPaused === true;
   if (Number.isFinite(state.time)) {
     audio.currentTime = state.time;
   }
@@ -93,14 +90,42 @@ function initAudio() {
   });
   window.addEventListener("pagehide", () => {
     writeAudioState({
-      playing: userPausedAudio ? false : true,
-      userPaused: userPausedAudio,
+      playing: !audio.paused,
+      userPaused: audio.paused,
     });
   });
+}
 
-  if (!userPausedAudio) {
-    playAudio();
-  }
+function showArticlePager() {
+  if (!articlePager) return;
+  articlePager.classList.add("is-visible");
+  window.clearTimeout(pagerTimer);
+  pagerTimer = window.setTimeout(() => {
+    articlePager.classList.remove("is-visible");
+  }, 1600);
+}
+
+function initArticlePager() {
+  if (!articlePager) return;
+  window.addEventListener(
+    "wheel",
+    (event) => {
+      if (event.deltaY > 0) showArticlePager();
+    },
+    { passive: true }
+  );
+  window.addEventListener(
+    "touchmove",
+    () => {
+      showArticlePager();
+    },
+    { passive: true }
+  );
+  document.addEventListener("mousemove", (event) => {
+    if (window.innerHeight - event.clientY < 120) showArticlePager();
+  });
+  articlePager.addEventListener("mouseenter", showArticlePager);
 }
 
 initAudio();
+initArticlePager();

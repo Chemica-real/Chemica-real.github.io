@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="description" content="{{ site.description }}">
     <title>{{ site.base_title }} | {{ subtitle }}</title>
-    <link rel="stylesheet" href="assets/styles.css">
+    <link rel="stylesheet" href="{{ asset_prefix | default('') }}assets/styles.css">
     {% if math %}
     <script>
       window.MathJax = {
@@ -15,25 +15,25 @@
     </script>
     <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
     {% endif %}
-    <script defer src="assets/nav.js"></script>
+    <script defer src="{{ asset_prefix | default('') }}assets/nav.js"></script>
   </head>
   <body class="{{ body_class | default('') }}">
     <div class="nav-hover-zone" aria-hidden="true"></div>
     <header class="site-header" data-auto-hide aria-label="主导航">
-      <a class="brand" href="index.html" aria-label="回到首页">
+      <a class="brand" href="{{ asset_prefix | default('') }}index.html" aria-label="回到首页">
         <span class="brand-mark">C_</span>
         <span>{{ site.name }}</span>
       </a>
       <nav class="nav" aria-label="页面导航">
         {% for item in nav %}
-        <a href="{{ item.url }}">{{ item.label }}</a>
+        <a href="{{ asset_prefix | default('') }}{{ item.url }}">{{ item.label }}</a>
         {% endfor %}
       </nav>
       <button class="audio-toggle" type="button" data-audio-toggle aria-label="播放或暂停背景音乐" title="播放或暂停背景音乐">
         <span class="audio-ring" aria-hidden="true"></span>
       </button>
     </header>
-    <audio id="site-audio" src="assets/media/audio/walk-through-time.wav" preload="auto" autoplay loop></audio>
+    <audio id="site-audio" src="{{ asset_prefix | default('') }}assets/media/audio/walk-through-time.wav" preload="auto" loop></audio>
 
     <main id="top">
       {% block content %}{% endblock %}

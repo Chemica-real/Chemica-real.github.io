@@ -1,0 +1,30 @@
+{% extends "base.html.j2" %}
+{% block content %}
+<section class="page-hero" aria-labelledby="page-title">
+  <p class="kicker">{{ page.kicker }}</p>
+  <h1 id="page-title">{{ listing_title }}</h1>
+  <p class="lead">{{ page.summary }}</p>
+  <nav class="breadcrumb" aria-label="当前位置">
+    {% for crumb in breadcrumb %}
+    <a href="{{ crumb.url }}">{{ crumb.title }}</a>
+    {% endfor %}
+  </nav>
+</section>
+
+<section class="article-shell">
+  <div class="file-list-panel">
+    {% if entries %}
+    <div class="file-list">
+      {% for entry in entries %}
+      <a class="file-list-item" href="{{ entry.url }}">
+        <span class="file-icon {{ entry.kind }}" aria-hidden="true"></span>
+        <span>{{ entry.title }}</span>
+      </a>
+      {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-list">这里暂时还没有 Markdown 文件。</p>
+    {% endif %}
+  </div>
+</section>
+{% endblock %}
