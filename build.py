@@ -4,6 +4,8 @@ import json
 import os
 import shutil
 import hashlib
+import html
+import re
 from pathlib import Path
 from urllib.parse import quote
 
@@ -20,6 +22,12 @@ ROOT = Path(__file__).resolve().parent
 SRC = ROOT / "src"
 ASSETS = ROOT / "assets"
 MANAGED_SECTIONS = {"notes", "literature", "thoughts", "others"}
+MATH_PATTERN = re.compile(
+    r"(?s)\$\$.*?\$\$"
+    r"|\\\[.*?\\\]"
+    r"|\\\(.*?\\\)"
+    r"|(?<!\\)\$(?!\$)(?:\\.|[^\n$])+(?<!\\)\$"
+)
 
 
 def copy_static_assets() -> None:
@@ -49,7 +57,28 @@ def remove_managed_outputs() -> None:
             shutil.rmtree(output_dir)
 
 
-def render_markdown(source: Path) -> str:
+def protect_math(source: str) -> tuple[str, dict[str, str]]:
+    math_blocks: dict[str, str] = {}
+
+    def replace(match: re.Match[str]) -> str:
+        token = f"@@CHEMICA_MATH_{len(math_blocks)}@@"
+        math_blocks[token] = match.group(0)
+        return token
+
+    return MATH_PATTERN.sub(replace, source), math_blocks
+
+
+def restore_math(rendered: str, math_blocks: dict[str, str]) -> str:
+    for token, math_text in math_blocks.items():
+        rendered = rendered.replace(token, html.escape(math_text, quote=False))
+    return rendered
+
+
+def render_markdown(source: Path, math: bool = False) -> str:
+    text = source.read_text(encoding="utf-8")
+    math_blocks: dict[str, str] = {}
+    if math:
+        text, math_blocks = protect_math(text)
     md = Markdown(
         extensions=[
             "extra",
@@ -66,7 +95,10 @@ def render_markdown(source: Path) -> str:
             }
         },
     )
-    return md.convert(source.read_text(encoding="utf-8"))
+    rendered = md.convert(text)
+    if math_blocks:
+        rendered = restore_math(rendered, math_blocks)
+    return rendered
 
 
 def url_path(path: Path) -> str:
@@ -99,9 +131,16 @@ def output_for_folder(section_slug: str, section_root: Path, folder: Path) -> Pa
 
 def sorted_children(folder: Path) -> tuple[list[Path], list[Path]]:
     children = [child for child in folder.iterdir() if not child.name.startswith(".")]
-    folders = sorted((child for child in children if child.is_dir()), key=lambda p: p.name.lower())
+    folders = sorted(
+        (child for child in children if child.is_dir() and has_markdown_descendant(child)),
+        key=lambda p: p.name.lower(),
+    )
     markdown_files = sorted((child for child in children if child.suffix.lower() == ".md"), key=lambda p: p.name.lower())
     return folders, markdown_files
+
+
+def has_markdown_descendant(folder: Path) -> bool:
+    return any(child.is_file() and child.suffix.lower() == ".md" for child in folder.rglob("*"))
 
 
 def collect_documents(folder: Path) -> list[Path]:
@@ -133,6 +172,15 @@ def build_listing_entries(section_slug: str, section_root: Path, folder: Path, c
             }
         )
     return entries
+
+
+def copy_section_assets(section_slug: str, section_root: Path) -> None:
+    for source in section_root.rglob("*"):
+        if not source.is_file() or source.name.startswith(".") or source.suffix.lower() == ".md":
+            continue
+        target = ROOT / section_slug / source.relative_to(section_root)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copy2(source, target)
 
 
 def render_listing(
@@ -177,6 +225,7 @@ def render_listing(
 def render_section_tree(env: Environment, data: dict, page: dict) -> None:
     section_root = SRC / "content" / page["slug"]
     section_root.mkdir(parents=True, exist_ok=True)
+    copy_section_assets(page["slug"], section_root)
     documents = collect_documents(section_root)
     article_template = env.get_template("article.html.j2")
     document_outputs = [output_for_markdown(page["slug"], section_root, source) for source in documents]
@@ -211,7 +260,7 @@ def render_section_tree(env: Environment, data: dict, page: dict) -> None:
             math=page.get("math", False),
             body_class="inner-page article-page",
             asset_prefix=asset_prefix(output_file),
-            content=render_markdown(source),
+            content=render_markdown(source, math=page.get("math", False)),
             previous_doc=previous_doc,
             next_doc=next_doc,
             index_url=relative_url(output_file, output_for_folder(page["slug"], section_root, source.parent)),
@@ -248,7 +297,7 @@ def render_site() -> None:
         if page["slug"] in MANAGED_SECTIONS:
             render_section_tree(env, data, page)
             continue
-        content = render_markdown(SRC / "content" / page["source"])
+        content = render_markdown(SRC / "content" / page["source"], math=page.get("math", False))
         html = page_template.render(
             **data,
             page=page,

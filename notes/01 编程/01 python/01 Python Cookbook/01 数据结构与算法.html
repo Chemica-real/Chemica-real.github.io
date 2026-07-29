@@ -1,0 +1,447 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Chemica_的个人 GitHub 主页，一个用 Python 和 Jinja2 本地生成的可爱静态喵窝。">
+    <title>Chemica_的喵窝 | 笔记 / 01 数据结构与算法</title>
+    <link rel="stylesheet" href="../../../../assets/styles.css?v=8eed1dd698">
+    <script>
+      window.MathJax = {
+        tex: { inlineMath: [["$", "$"], ["\\(", "\\)"]], displayMath: [["$$", "$$"], ["\\[", "\\]"]] },
+        svg: { fontCache: "global" }
+      };
+    </script>
+    <script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-svg.js"></script>
+    <script defer src="../../../../assets/nav.js?v=8eed1dd698"></script>
+  </head>
+  <body class="inner-page article-page">
+    <div class="nav-hover-zone" aria-hidden="true"></div>
+    <header class="site-header" data-auto-hide aria-label="主导航">
+      <a class="brand" href="../../../../index.html" aria-label="回到首页">
+        <span class="brand-mark">C_</span>
+        <span>Chemica_的喵窝</span>
+      </a>
+      <nav class="nav" aria-label="页面导航">
+        <a href="../../../../index.html#who">我是谁</a>
+        <a href="../../../../notes.html">笔记</a>
+        <a href="../../../../literature.html">文学</a>
+        <a href="../../../../thoughts.html">想法</a>
+        <a href="../../../../gallery.html">美图</a>
+        <a href="../../../../index.html#contents-other">其他</a>
+      </nav>
+    </header>
+
+    <main id="top">
+<section class="page-hero" aria-labelledby="page-title">
+  <p class="kicker">Notes / Markdown / LaTeX</p>
+  <h1 id="page-title">01 数据结构与算法</h1>
+  <p class="lead"><a class="text-link" href="index.html">返回列表</a></p>
+</section>
+
+<section class="article-shell">
+  <article class="markdown-body">
+    <h1 id="_1">数据结构与算法</h1>
+<h2 id="_2">关于序列</h2>
+<h3 id="_3">分解序列</h3>
+<p>可迭代对象皆可分解：</p>
+<div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;ACME&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="p">]</span> 
+<span class="n">name</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="p">(</span><span class="n">year</span><span class="p">,</span> <span class="n">month</span><span class="p">,</span> <span class="n">day</span><span class="p">)</span> <span class="o">=</span> <span class="n">data</span>
+</code></pre></div>
+
+<p>忽略不必要的部分用<code>_</code>，取出特定位置项，如：</p>
+<div class="highlight"><pre><span></span><code><span class="n">data</span> <span class="o">=</span> <span class="p">[</span> <span class="s1">&#39;ACME&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">91.1</span><span class="p">,</span> <span class="p">(</span><span class="mi">2012</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">21</span><span class="p">)</span> <span class="p">]</span> 
+<span class="n">_</span><span class="p">,</span> <span class="n">shares</span><span class="p">,</span> <span class="n">price</span><span class="p">,</span> <span class="n">_</span> <span class="o">=</span> <span class="n">data</span>
+</code></pre></div>
+
+<p>去头去尾：</p>
+<div class="highlight"><pre><span></span><code><span class="n">first</span><span class="p">,</span> <span class="o">*</span><span class="n">middle</span><span class="p">,</span> <span class="n">last</span> <span class="o">=</span> <span class="n">grades</span>
+</code></pre></div>
+
+<p><code>middle</code>是一个列表。<br />
+亦可去掉<code>first,</code>，<code>*middle, last = grades</code> (即去尾) </p>
+<blockquote>
+<p>与<code>for</code>连用<br />
+与<code>split</code>连用</p>
+</blockquote>
+<p>丢弃大量值：</p>
+<div class="highlight"><pre><span></span><code><span class="n">record</span> <span class="o">=</span> <span class="p">(</span><span class="s1">&#39;ACME&#39;</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mf">123.45</span><span class="p">,</span> <span class="p">(</span><span class="mi">12</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">2012</span><span class="p">))</span> 
+<span class="n">name</span><span class="p">,</span> <span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="p">(</span><span class="o">*</span><span class="n">_</span><span class="p">,</span> <span class="n">year</span><span class="p">)</span> <span class="o">=</span> <span class="n">record</span>
+</code></pre></div>
+
+<h3 id="n">保存最后N个元素</h3>
+<p>用到<code>deque</code> (队列) ：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">deque</span>
+</code></pre></div>
+
+<blockquote>
+<p><code>deque</code>没有做<code>__str__</code></p>
+</blockquote>
+<p>固定长度的队列：</p>
+<div class="highlight"><pre><span></span><code><span class="n">q</span> <span class="o">=</span> <span class="n">deque</span><span class="p">(</span><span class="n">maxlen</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+</code></pre></div>
+
+<p>队列的操作：</p>
+<div class="highlight"><pre><span></span><code><span class="n">q</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">appendleft</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="n">q</span><span class="o">.</span><span class="n">pop</span><span class="p">()</span>       <span class="c1"># 从右边删除并返回</span>
+<span class="n">q</span><span class="o">.</span><span class="n">popleft</span><span class="p">()</span>   <span class="c1"># 从左边删除并返回</span>
+</code></pre></div>
+
+<blockquote>
+<p>队列以上的时间复杂度是 $O(1)$，列表在开头增删时为 $O(n)$</p>
+</blockquote>
+<h3 id="orn">找到最大or最小的N个元素</h3>
+<p>用到<code>heapq</code> (堆) 模块：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
+
+<span class="n">nums</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">8</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">7</span><span class="p">,</span> <span class="o">-</span><span class="mi">4</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">23</span><span class="p">,</span> <span class="mi">42</span><span class="p">,</span> <span class="mi">37</span><span class="p">,</span> <span class="mi">2</span><span class="p">]</span> 
+<span class="nb">print</span><span class="p">(</span><span class="n">heapq</span><span class="o">.</span><span class="n">nlargest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">nums</span><span class="p">))</span>    <span class="c1"># Prints [42, 37, 23] </span>
+<span class="nb">print</span><span class="p">(</span><span class="n">heapq</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">nums</span><span class="p">))</span>   <span class="c1"># Prints [-4, 1, 2]</span>
+</code></pre></div>
+
+<p>在字典中按指定字段：</p>
+<div class="highlight"><pre><span></span><code><span class="n">cheap</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">nsmallest</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span> <span class="n">mydict</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">s</span><span class="p">:</span> <span class="n">s</span><span class="p">[</span><span class="s1">&#39;price&#39;</span><span class="p">])</span>
+</code></pre></div>
+
+<h4 id="_4">原理：</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span>
+
+<span class="n">somelist</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">heapq</span><span class="o">.</span><span class="n">heapify</span><span class="p">(</span><span class="n">somelist</span><span class="p">)</span>  <span class="c1"># 直接原位改变somelist</span>
+</code></pre></div>
+
+<p>堆最重要的特性是<code>heap(0)</code>总是最小的元素：</p>
+<div class="highlight"><pre><span></span><code><span class="n">smallest</span> <span class="o">=</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="n">someheap</span><span class="p">)</span>  <span class="c1"># 弹出最小值，然后第二小取而代之</span>
+</code></pre></div>
+
+<blockquote>
+<p>时间复杂度是 $O(\log N)$</p>
+</blockquote>
+<h4 id="_5">讨论：</h4>
+<table>
+<thead>
+<tr>
+<th style="text-align: center;">$N$</th>
+<th style="text-align: left;">建议用什么函数</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: center;">1</td>
+<td style="text-align: left;"><code>min()</code>和<code>max()</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">相对较小</td>
+<td style="text-align: left;"><code>nlargest()</code>和<code>nsmallest()</code></td>
+</tr>
+<tr>
+<td style="text-align: center;">相当大</td>
+<td style="text-align: left;"><code>sorted(items)[:N]</code></td>
+</tr>
+</tbody>
+</table>
+<h3 id="_6">实现优先级数列</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">heapq</span> 
+
+<span class="k">class</span><span class="w"> </span><span class="nc">PriorityQueue</span><span class="p">:</span> 
+    <span class="k">def</span><span class="w"> </span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_queue</span> <span class="o">=</span> <span class="p">[]</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">=</span> <span class="mi">0</span> 
+    <span class="k">def</span><span class="w"> </span><span class="nf">push</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">item</span><span class="p">,</span> <span class="n">priority</span><span class="p">):</span> 
+        <span class="n">heapq</span><span class="o">.</span><span class="n">heappush</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">,</span> <span class="p">(</span><span class="o">-</span><span class="n">priority</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">_index</span><span class="p">,</span> <span class="n">item</span><span class="p">))</span> 
+        <span class="bp">self</span><span class="o">.</span><span class="n">_index</span> <span class="o">+=</span> <span class="mi">1</span> 
+    <span class="k">def</span><span class="w"> </span><span class="nf">pop</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> 
+        <span class="k">return</span> <span class="n">heapq</span><span class="o">.</span><span class="n">heappop</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_queue</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p><code>heapq.heappop()</code>是从每一项的第一项向后开始判断大小的；这与<code>max()</code>、<code>min()</code>是相同的</p>
+</blockquote>
+<h3 id="_7">序列去重</h3>
+<p>如果序列中的值是可哈希的：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dedupe</span><span class="p">(</span><span class="n">items</span><span class="p">):</span> 
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> 
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span> 
+        <span class="k">if</span> <span class="n">item</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span> 
+            <span class="k">yield</span> <span class="n">item</span> 
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">item</span><span class="p">)</span>
+</code></pre></div>
+
+<p>当序列中存在不可哈希的对象时：</p>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">dedupe</span><span class="p">(</span><span class="n">items</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span> 
+    <span class="n">seen</span> <span class="o">=</span> <span class="nb">set</span><span class="p">()</span> 
+    <span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span> 
+        <span class="n">val</span> <span class="o">=</span> <span class="n">item</span> <span class="k">if</span> <span class="n">key</span> <span class="ow">is</span> <span class="kc">None</span> <span class="k">else</span> <span class="n">key</span><span class="p">(</span><span class="n">item</span><span class="p">)</span> 
+        <span class="k">if</span> <span class="n">val</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">seen</span><span class="p">:</span> 
+            <span class="k">yield</span> <span class="n">item</span> 
+            <span class="n">seen</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="n">val</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p><code>key</code>的作用是指定一个函数，用来将序列中的元素转换为可哈希的类型</p>
+</blockquote>
+<p>如果只是去重（不顾顺序）：</p>
+<div class="highlight"><pre><span></span><code><span class="nb">set</span><span class="p">(</span><span class="n">mylist</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_8">切片</h3>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">mylist</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>  <span class="c1"># equals mylist[2:4:2], even better</span>
+<span class="n">mylist</span><span class="p">[</span><span class="n">a</span><span class="p">]</span> <span class="o">=</span> <span class="p">[</span><span class="mi">1</span><span class="p">,</span> <span class="mi">10</span><span class="p">]</span>
+<span class="k">del</span> <span class="n">mylist</span><span class="p">[</span><span class="n">a</span><span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p>拥有自动限制边界的功能，避免<code>IndexError</code></p>
+</blockquote>
+<p>具体查看限制边界情况：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="mi">5</span><span class="p">,</span> <span class="mi">50</span><span class="p">,</span> <span class="mi">2</span><span class="p">)</span>
+<span class="n">s</span> <span class="o">=</span> <span class="s2">&quot;HelloWorld&quot;</span>
+<span class="n">a</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))</span>  <span class="c1"># return slice(5, 10, 2)</span>
+
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="o">*</span><span class="n">a</span><span class="o">.</span><span class="n">indices</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">s</span><span class="p">))):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">s</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+</code></pre></div>
+
+<p>查看<code>slice</code>属性：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="nb">slice</span><span class="p">(</span><span class="n">start</span><span class="p">,</span> <span class="n">end</span><span class="p">,</span> <span class="n">step</span><span class="p">)</span>
+<span class="n">a</span><span class="o">.</span><span class="n">start</span>
+<span class="n">a</span><span class="o">.</span><span class="n">end</span>
+<span class="n">a</span><span class="o">.</span><span class="n">step</span>
+</code></pre></div>
+
+<h3 id="_9">找出序列中出现次数最多的元素</h3>
+<p>用<code>Counter</code>类：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">Counter</span>
+
+<span class="n">words</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">word_counts</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">top_three</span> <span class="o">=</span> <span class="n">word_counts</span><span class="o">.</span><span class="n">most_common</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>  <span class="c1"># 例如输出：[(&#39;eyes&#39;, 8), (&#39;the&#39;, 5), (&#39;look&#39;, 4)]</span>
+</code></pre></div>
+
+<p><code>Counter</code>对象的底层逻辑是字典：</p>
+<div class="highlight"><pre><span></span><code><span class="n">word_counts</span><span class="p">[</span><span class="s1">&#39;you&#39;</span><span class="p">]</span>   <span class="c1"># return an int</span>
+</code></pre></div>
+
+<p>增加计数：</p>
+<div class="highlight"><pre><span></span><code><span class="n">morewords</span> <span class="o">=</span> <span class="p">[</span><span class="o">...</span><span class="p">]</span>
+<span class="n">word_counts</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">morewords</span><span class="p">)</span>
+</code></pre></div>
+
+<p>数学运算：</p>
+<div class="highlight"><pre><span></span><code><span class="n">a</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">words</span><span class="p">)</span>
+<span class="n">b</span> <span class="o">=</span> <span class="n">Counter</span><span class="p">(</span><span class="n">morewords</span><span class="p">)</span>
+
+<span class="n">c</span> <span class="o">=</span> <span class="n">a</span> <span class="o">+</span> <span class="n">b</span>  <span class="c1"># Add counts</span>
+<span class="n">d</span> <span class="o">=</span> <span class="n">a</span> <span class="o">-</span> <span class="n">b</span>  <span class="c1"># Substract counts</span>
+</code></pre></div>
+
+<h3 id="_10">根据字段将记录分组</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">itemgetter</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">groupby</span>
+
+<span class="n">rows</span> <span class="o">=</span> <span class="p">[</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;5412 N CLARK&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/01/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;5148 N CLARK&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/04/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;5800 E 58TH&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/02/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;2122 N CLARK&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/03/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;5645 N RAVENSWOOD&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/02/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;1060 W ADDISON&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/02/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;4801 N BROADWAY&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/01/2012&#39;</span><span class="p">},</span> 
+    <span class="p">{</span><span class="s1">&#39;address&#39;</span><span class="p">:</span> <span class="s1">&#39;1039 W GRANVILLE&#39;</span><span class="p">,</span> <span class="s1">&#39;date&#39;</span><span class="p">:</span> <span class="s1">&#39;07/04/2012&#39;</span><span class="p">},</span> 
+<span class="p">]</span>
+
+<span class="c1"># Sort by the desired field first </span>
+<span class="n">rows</span><span class="o">.</span><span class="n">sort</span><span class="p">(</span><span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">))</span> 
+
+<span class="c1"># Iterate in groups </span>
+<span class="k">for</span> <span class="n">date</span><span class="p">,</span> <span class="n">items</span> <span class="ow">in</span> <span class="n">groupby</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="s1">&#39;date&#39;</span><span class="p">)):</span> 
+    <span class="nb">print</span><span class="p">(</span><span class="n">date</span><span class="p">)</span> 
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">items</span><span class="p">:</span> 
+        <span class="nb">print</span><span class="p">(</span><span class="s1">&#39; &#39;</span><span class="p">,</span> <span class="n">i</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>一定要先排序，<code>groupby()</code>只能检查连续的项</p>
+</blockquote>
+<p>如果不考虑内存方面因素，可以（更快）：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">rows_by_date</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">rows</span><span class="p">:</span>
+    <span class="n">rows_by_date</span><span class="p">[</span><span class="n">row</span><span class="p">[</span><span class="s1">&#39;date&#39;</span><span class="p">]]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+
+<span class="c1"># 查询</span>
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">rows_by_date</span><span class="p">[</span><span class="s1">&#39;07/01/2012&#39;</span><span class="p">]:</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">r</span><span class="p">)</span>
+</code></pre></div>
+
+<h3 id="_11">筛选序列中的元素</h3>
+<h4 id="_12">列表推导式</h4>
+<div class="highlight"><pre><span></span><code><span class="p">[</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">mylist</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p>潜在缺点：输入很大时会产生庞大结果</p>
+</blockquote>
+<h4 id="_13">生成器表达式</h4>
+<div class="highlight"><pre><span></span><code><span class="p">(</span><span class="n">n</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">mylist</span> <span class="k">if</span> <span class="n">n</span> <span class="o">&gt;</span> <span class="mi">0</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>返回迭代器</p>
+</blockquote>
+<h4 id="_14">复杂的筛选条件</h4>
+<div class="highlight"><pre><span></span><code><span class="k">def</span><span class="w"> </span><span class="nf">judge</span><span class="p">(</span><span class="n">val</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="nb">bool</span><span class="p">:</span>
+    <span class="o">...</span>
+
+<span class="n">processed_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="nb">filter</span><span class="p">(</span><span class="n">judge</span><span class="p">,</span> <span class="n">mylist</span><span class="p">))</span>
+</code></pre></div>
+
+<blockquote>
+<p><code>filter()</code>返回迭代器</p>
+</blockquote>
+<h4 id="_15">布尔选择器</h4>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">itertools</span><span class="w"> </span><span class="kn">import</span> <span class="n">compress</span>
+
+<span class="n">morethan5</span> <span class="o">=</span> <span class="p">[</span><span class="n">n</span> <span class="o">&gt;</span> <span class="mi">5</span> <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">counts</span><span class="p">]</span>
+<span class="n">processed_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="n">compress</span><span class="p">(</span><span class="n">mylist</span><span class="p">,</span> <span class="n">morethan5</span><span class="p">))</span>
+</code></pre></div>
+
+<blockquote>
+<p><code>compress()</code>返回迭代器</p>
+</blockquote>
+<hr />
+<h2 id="_16">关于字典</h2>
+<h3 id="multidict">一键多值字典 (multidict)</h3>
+<p>用<code>defaultdict</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">defaultdict</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="n">s</span> <span class="o">=</span> <span class="n">defaultdict</span><span class="p">(</span><span class="nb">set</span><span class="p">)</span>
+<span class="n">s</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">add</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
+</code></pre></div>
+
+<p>用普通的字典：</p>
+<div class="highlight"><pre><span></span><code><span class="n">d</span> <span class="o">=</span> <span class="p">{}</span>
+<span class="n">d</span><span class="o">.</span><span class="n">setdefault</span><span class="p">(</span><span class="s1">&#39;a&#39;</span><span class="p">,</span> <span class="p">[])</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+</code></pre></div>
+
+<blockquote>
+<p>不自然，且每次调用时会创建一个初始值的新实例 ([])</p>
+</blockquote>
+<h3 id="ordereddict">有序字典 (<code>OrderedDict</code>)</h3>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">collections</span><span class="w"> </span><span class="kn">import</span> <span class="n">OrderedDict</span>
+
+<span class="n">d</span> <span class="o">=</span> <span class="n">OrderedDict</span><span class="p">()</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;a&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">1</span>
+<span class="n">d</span><span class="p">[</span><span class="s1">&#39;b&#39;</span><span class="p">]</span> <span class="o">=</span> <span class="mi">2</span>
+
+<span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">d</span><span class="p">:</span>
+    <span class="o">...</span>
+</code></pre></div>
+
+<p>如果想有序存入JSON，只需：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">import</span><span class="w"> </span><span class="nn">json</span>
+
+<span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+</code></pre></div>
+
+<p><code>OrderedDict</code>在内存中的大小是普通字典的<strong>2倍多</strong>！</p>
+<h3 id="_17">字典的最大/小与排序</h3>
+<p>通常利用<code>zip()</code>将字典的键与值倒转：</p>
+<div class="highlight"><pre><span></span><code><span class="n">min_price</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">prices</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>   <span class="c1"># 例如返回：(10.75, &#39;FB&#39;)</span>
+<span class="n">max_price</span> <span class="o">=</span> <span class="nb">max</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">prices</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+<span class="n">prices_sorted</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="nb">zip</span><span class="p">(</span><span class="n">prices</span><span class="o">.</span><span class="n">values</span><span class="p">(),</span> <span class="n">prices</span><span class="o">.</span><span class="n">keys</span><span class="p">()))</span>
+</code></pre></div>
+
+<blockquote>
+<p><code>zip()</code>创建了一个迭代器，只能使用<strong>一次</strong>！</p>
+</blockquote>
+<h4 id="_18">常规方法：</h4>
+<p>如果直接使用<code>max(mydict)</code>和<code>min(mydict)</code>，只会处理并返回<strong>键</strong>。\
+如果只想对值进行处理，并得知返回值，可以<code>max(mydict.values())</code>。\
+如果想通过处理值返回键，可以</p>
+<div class="highlight"><pre><span></span><code><span class="n">min_key</span> <span class="o">=</span> <span class="nb">min</span><span class="p">(</span><span class="n">mydict</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">k</span><span class="p">:</span> <span class="n">mydict</span><span class="p">[</span><span class="n">k</span><span class="p">])</span>
+<span class="n">min_value</span> <span class="o">=</span> <span class="n">mydict</span><span class="p">[</span><span class="n">min_key</span><span class="p">]</span>
+</code></pre></div>
+
+<blockquote>
+<p>要得到值还需要额外进行一次查找</p>
+</blockquote>
+<p><code>lambda k: mydict[k]</code>可以用<code>operator.itemgetter()</code>代替（效率更高）：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">itemgetter</span>
+
+<span class="n">mydict</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">mydict</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="s1">&#39;fname&#39;</span><span class="p">))</span>
+<span class="n">mydict</span> <span class="o">=</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">mydict</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">itemgetter</span><span class="p">(</span><span class="s1">&#39;lname&#39;</span><span class="p">,</span> <span class="s1">&#39;fname&#39;</span><span class="p">))</span>  <span class="c1"># 多重优先级</span>
+</code></pre></div>
+
+<p>对于类，可以用<code>operator.attrgetter()</code>：</p>
+<div class="highlight"><pre><span></span><code><span class="kn">from</span><span class="w"> </span><span class="nn">operator</span><span class="w"> </span><span class="kn">import</span> <span class="n">attrgetter</span>
+
+<span class="nb">sorted</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="k">lambda</span> <span class="n">u</span><span class="p">:</span> <span class="n">u</span><span class="o">.</span><span class="n">user_id</span><span class="p">)</span>
+<span class="nb">sorted</span><span class="p">(</span><span class="n">users</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="n">attrgetter</span><span class="p">(</span><span class="s1">&#39;user_id&#39;</span><span class="p">))</span>
+</code></pre></div>
+
+<h3 id="_19">在两个字典中寻找相同点</h3>
+<div class="highlight"><pre><span></span><code><span class="c1"># Find keys in common</span>
+<span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># Find keys in a that are not in b</span>
+<span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="n">b</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span>
+
+<span class="c1"># Find (key, value) pairs in common</span>
+<span class="n">a</span><span class="o">.</span><span class="n">items</span><span class="p">()</span> <span class="o">&amp;</span> <span class="n">b</span><span class="o">.</span><span class="n">items</span><span class="p">()</span>
+</code></pre></div>
+
+<blockquote>
+<p>虽然<code>mydict.keys()</code>返回的是<code>dict_keys</code>类，但它支持集合运算</p>
+</blockquote>
+<p>如果想过滤某些键，创建新的字典：</p>
+<div class="highlight"><pre><span></span><code><span class="n">c</span> <span class="o">=</span> <span class="p">{</span><span class="n">key</span><span class="p">:</span> <span class="n">a</span><span class="p">[</span><span class="n">key</span><span class="p">]</span> <span class="k">for</span> <span class="n">key</span> <span class="ow">in</span> <span class="n">a</span><span class="o">.</span><span class="n">keys</span><span class="p">()</span> <span class="o">-</span> <span class="p">{</span><span class="s1">&#39;z&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">}}</span>
+</code></pre></div>
+  </article>
+</section>
+
+<nav class="article-pager" data-article-pager aria-label="上一篇和下一篇">
+  <a class="pager-button" href="../../../00%20Simple%20Examples%20of%20MarkDown/00%20%E8%AF%95%E9%AA%8C.html">
+    <span>上一篇</span>
+    <strong>00 试验</strong>
+  </a>
+
+  <a class="pager-button" href="../../../02%20%E6%95%B0%E5%AD%A6/02%20%E7%BA%BF%E6%80%A7%E4%BB%A3%E6%95%B0/MIT%2018.06%20Linear%20Algebra/01%20%E6%96%B9%E7%A8%8B%E7%BB%84%E7%9A%84%E5%87%A0%E4%BD%95%E8%A7%A3%E9%87%8A.html">
+    <span>下一篇</span>
+    <strong>01 方程组的几何解释</strong>
+  </a>
+</nav>
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-panel">
+        <div>
+          <p class="footer-label">最近更新</p>
+          <ul class="footer-list">
+            <li>2026-07-25：上传了小说，并整理文学类栏目。</li>
+            <li>2026-07-24：搭建喵窝主页、多页面模板、Markdown 与 LaTeX 样式。</li>
+            <li>之后可以把这里改成文章更新、项目更新或学习记录。</li>
+          </ul>
+        </div>
+        <div>
+          <p class="footer-label">其他页面</p>
+          <div class="footer-links">
+            <a href="https://github.com/Chemica-real">GitHub</a>
+            <a href="https://space.bilibili.com/699100129?spm_id_from=333.1007.0.0">Bilibili</a>
+            <a href="https://gitee.com/the-person-on-the-tree">Gitee</a>
+          </div>
+        </div>
+        <div>
+          <p class="footer-label">喵窝状态</p>
+          <p class="footer-note">© 2026 Chemica_的喵窝<br>Built locally with Python + Jinja2.</p>
+        </div>
+      </div>
+    </footer>
+  </body>
+</html>

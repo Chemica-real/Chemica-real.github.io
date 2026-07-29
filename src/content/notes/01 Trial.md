@@ -1,4 +1,0 @@
-# Trial
-
-## Hello
-Say hello.
