@@ -48,10 +48,10 @@
 - Column pictures 列图像
 - Matrix form</p>
 <hr />
-<h2 id="example">Example</h2>
+<h2 id="example-chemica_math_2">Example ($2 \times 2$)</h2>
 <p>$$\begin{cases}
-2x - y = 0 \\
--x + 2y = 3
+2x &amp;-&amp; y &amp;= 0 \\
+-x &amp;+&amp; 2y &amp;= 3
 \end{cases}$$</p>
 <h3 id="matrix-form">Matrix form:</h3>
 <p>$$\begin{bmatrix}
@@ -69,6 +69,58 @@ x \\ y
 <h3 id="row-picture">Row picture</h3>
 <p>即两个方程所代表的直线相交</p>
 <p><img alt="Row picture" src="graphs/01%2001%20Row%20pictures%20of%20linear_system.svg" /></p>
+<h3 id="column-picture">Column picture</h3>
+<p>$$x
+\begin{bmatrix}
+2 \\ 1 \end{bmatrix} + y
+\begin{bmatrix}
+-1 \\ 2 \end{bmatrix} =
+\begin{bmatrix}
+0 \\ 3 \end{bmatrix}
+$$</p>
+<blockquote>
+<p>Linear Combination of Columns</p>
+</blockquote>
+<p>Right combination: $x=1, \, y=2$</p>
+<p>If $x, \, y$ take <strong>all</strong> the combination $\implies$ <strong>any</strong> right-hand side vector</p>
+<hr />
+<h2 id="example-chemica_math_10">Example ($3 \times 3$)</h2>
+<p>$$\begin{cases}
+2x &amp;-&amp; y &amp;&amp; &amp;= 0 \\
+-x &amp;+&amp; 2y &amp;-&amp; z &amp;= -1 \\
+&amp;-&amp;3y &amp;+&amp; 4z &amp;= 4
+\end{cases}$$</p>
+<p>$$A = \begin{bmatrix}
+2 &amp; -1 &amp; 0 \\
+-1 &amp; 2 &amp; -1 \\
+0 &amp; -3 &amp; 4 \end{bmatrix}, \; b = \begin{bmatrix}
+0 \\ -1 \\ 4 \end{bmatrix}$$</p>
+<h3 id="row-picture_1">Row picture</h3>
+<p><img alt="Row picture" src="graphs/01%2002%20linear_3d_row_picture.svg" /></p>
+<h3 id="column-picture_1">Column picture</h3>
+<p>$$ x \begin{bmatrix}
+2 \\ -1 \\ 0 \end{bmatrix} + y \begin{bmatrix}
+-1 \\ 2 \\ -3 \end{bmatrix} + z \begin{bmatrix}
+0 \\ -1 \\ 4 \end{bmatrix} = \begin{bmatrix}
+0 \\ -1 \\ 4 \end{bmatrix} $$</p>
+<p>Then solution&rsquo;s clear: $x=0, \, y=0, \, z=1$</p>
+<h3 id="further-problem">Further problem</h3>
+<p>Can I solve $\pmb{Ax}=\pmb{b}$ for every $b$?<br />
+Do the linear combs. of the columns fill 3-D space?</p>
+<ul>
+<li>For this matrix, <strong>YES</strong>.</li>
+<li>But if the 3 columns lie in the same plain $\implies$ $b$ must be in the plain.</li>
+</ul>
+<hr />
+<h2 id="about-chemica_math_19">About $\pmb{Ax} = {b}$</h2>
+<h3 id="how-do-i-multiply-a-matrix-by-a-vector">How do I <em>multiply</em> a matrix by a vector?</h3>
+<p>E.g.</p>
+<p>$$\begin{bmatrix} 2 &amp; 5 \\ 1 &amp; 3 \end{bmatrix}
+\begin{bmatrix} 1 \\ 2 \end{bmatrix}$$</p>
+<p>Column by column:</p>
+<p>$ = 1 \begin{bmatrix} 2 \ 1 \end{bmatrix} + 2
+\begin{bmatrix} 5 \ 3 \end{bmatrix} \quad = \begin{bmatrix} 12 \ 7 \end{bmatrix}
+$</p>
   </article>
 </section>
 
